@@ -46,10 +46,11 @@ class OnboardingView extends GetView<OnboardingController> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        LottieBuilder.asset(
+                        Lottie.asset(
                           item.image,
                           height: 250,
                           repeat: true,
+                          animate: true,
                           fit: BoxFit.contain,
                         ),
                         SizedBox(height: 20),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../theme/colors.dart';
-
 class CustomText extends StatelessWidget {
   final String text;
   final TextStyle? style;
@@ -16,7 +14,8 @@ class CustomText extends StatelessWidget {
     this.style,
     this.color,
     this.fontSize,
-    this.fontWeight, this.align,
+    this.fontWeight,
+    this.align,
   });
 
   @override
@@ -25,11 +24,13 @@ class CustomText extends StatelessWidget {
     return Text(
       text,
       textAlign: align,
-      style: style ?? baseStyle?.copyWith(
-        color: color,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-      ),
+      style:
+          style ??
+          baseStyle?.copyWith(
+            color: color,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+          ),
     );
   }
 }

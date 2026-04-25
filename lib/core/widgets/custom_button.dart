@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scholr/core/theme/text_styles.dart';
 
 import '../theme/colors.dart';
 import 'custom_text.dart';
@@ -39,10 +40,14 @@ class CustomButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (icon != null) ...[icon!, const SizedBox(width: 8),],
-            CustomText(text: text)
+            if (icon != null) ...[icon!, const SizedBox(width: 8)],
+            CustomText(
+              text: text,
+              style: AppTextStyles.button.copyWith(
+                color: AppColors.textInverse,
+              ),
+            ),
           ],
-          
         ),
       ),
     );

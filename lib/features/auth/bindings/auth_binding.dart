@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:scholr/features/auth/views/login_view.dart';
+import 'package:scholr/features/auth/controllers/auth_controller.dart';
 
 class AuthBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => LoginView());
+    Get.lazyPut(() => AuthController());
   }
 }

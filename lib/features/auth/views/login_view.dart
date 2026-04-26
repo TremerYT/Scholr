@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:scholr/core/theme/theme.dart';
 import 'package:scholr/core/widgets/custom_button.dart';
 import 'package:scholr/core/widgets/custom_text.dart';
 import 'package:scholr/features/auth/controllers/auth_controller.dart';
 import 'package:scholr/features/auth/widgets/custom_form.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 
 class LoginView extends GetView<AuthController> {
   const LoginView({super.key});
@@ -27,24 +29,24 @@ class LoginView extends GetView<AuthController> {
               padding: const EdgeInsets.all(24),
               child: SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 60),
-                    CustomText(
-                      text: "Log in",
-                      style: AppTextStyles.headlineLarge.copyWith(
-                        color: AppColors.textPrimary,
-                      ),
-                      align: TextAlign.start,
+                    Lottie.asset(
+                      "assets/lottie/Login.json",
+                      height: 250,
+                      repeat: true,
+                      animate: true,
+                      fit: BoxFit.contain,
                     ),
                     SizedBox(height: 10),
                     CustomText(
                       text: "Login to continue using the app.",
-                      style: AppTextStyles.bodyMedium.copyWith(
+                      style: AppTextStyles.headlineMedium.copyWith(
                         color: AppColors.textPrimary,
                       ),
+                      align: TextAlign.center,
                     ),
-                    SizedBox(height: 60),
+                    SizedBox(height: 10),
                     CustomForm(
                       formKey: controller.loginFormKey,
                       fields: controller.loginFields,
@@ -88,6 +90,20 @@ class LoginView extends GetView<AuthController> {
                       child: CustomButton(
                         text: "Login",
                         onPressed: controller.login,
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: SignInButton(
+                        Buttons.google,
+                        elevation: 1,
+                        onPressed: () {},
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        text: "Sign up with Google",
                       ),
                     ),
                   ],

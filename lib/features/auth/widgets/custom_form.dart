@@ -6,16 +6,8 @@ import 'package:scholr/features/auth/model/form_field.dart';
 class CustomForm extends StatelessWidget {
   final GlobalKey<FormBuilderState> formKey;
   final List<FormFields> fields;
-  final String? buttonText;
-  final VoidCallback? onSubmit;
 
-  const CustomForm({
-    super.key,
-    required this.formKey,
-    required this.fields,
-    this.buttonText,
-    this.onSubmit,
-  });
+  const CustomForm({super.key, required this.formKey, required this.fields});
 
   @override
   Widget build(BuildContext context) {

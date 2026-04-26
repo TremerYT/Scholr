@@ -74,7 +74,7 @@ class LoginView extends GetView<AuthController> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () => Get.toNamed("/reset"),
                           child: CustomText(
                             text: "Forgot Password ?",
                             style: AppTextStyles.bodyLarge.copyWith(

@@ -19,3 +19,14 @@ final loginFormData = [
     ],
   ),
 ];
+
+final resetFormData = [
+  FormFields(
+    name: "email",
+    label: "Email Address",
+    validators: [
+      FormBuilderValidators.required(),
+      FormBuilderValidators.email(),
+    ],
+  ),
+];

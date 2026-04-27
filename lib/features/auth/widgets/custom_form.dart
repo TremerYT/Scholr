@@ -3,24 +3,42 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:scholr/core/theme/colors.dart';
 import 'package:scholr/features/auth/model/form_field.dart';
 
-class CustomForm extends StatelessWidget {
+class CustomForm extends StatefulWidget {
   final GlobalKey<FormBuilderState> formKey;
   final List<FormFields> fields;
 
   const CustomForm({super.key, required this.formKey, required this.fields});
 
   @override
+  State<CustomForm> createState() => _CustomFormState();
+}
+
+class _CustomFormState extends State<CustomForm> {
+  final Map<String, bool> obscureMap = {};
+
+  @override
+  void initState() {
+    super.initState();
+    for (var field in widget.fields) {
+      if (field.isPassword) {
+        obscureMap[field.name] = true;
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FormBuilder(
-      key: formKey,
+      key: widget.formKey,
       child: Column(
         children: [
-          ...fields.map((field) {
+          ...widget.fields.map((field) {
+            final isObscured = obscureMap[field.name] ?? false;
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: FormBuilderTextField(
                 name: field.name,
-                obscureText: field.isPassword,
+                obscureText: field.isPassword ? isObscured : false,
                 style: const TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 16,
@@ -31,6 +49,20 @@ class CustomForm extends StatelessWidget {
                     color: AppColors.textSecondary,
                     fontSize: 16,
                   ),
+                  suffixIcon: field.isPassword
+                      ? IconButton(
+                          icon: Icon(
+                            isObscured
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              obscureMap[field.name] = !isObscured;
+                            });
+                          },
+                        )
+                      : null,
                   errorStyle: const TextStyle(color: Colors.red, fontSize: 13),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),

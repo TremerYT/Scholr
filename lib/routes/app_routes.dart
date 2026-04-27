@@ -3,4 +3,5 @@ class AppRoutes {
   static const login = "/login";
   static const reset = "/reset";
   static const verification = "/verification";
+  static const resetPassword = "/resetPassword";
 }

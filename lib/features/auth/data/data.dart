@@ -30,3 +30,24 @@ final resetFormData = [
     ],
   ),
 ];
+
+final resetPasswordFormData = [
+  FormFields(
+    name: "password",
+    label: "Enter your new Password",
+    isPassword: true,
+    validators: [
+      FormBuilderValidators.required(),
+      FormBuilderValidators.password(),
+    ],
+  ),
+  FormFields(
+    name: "confirmPassword",
+    label: "Confirm your new Password",
+    isPassword: true,
+    validators: [
+      FormBuilderValidators.required(),
+      FormBuilderValidators.password(),
+    ],
+  ),
+];

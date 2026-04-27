@@ -6,7 +6,11 @@ import 'package:scholr/features/auth/data/data.dart';
 class AuthController extends GetxController {
   final loginFormKey = GlobalKey<FormBuilderState>();
   final resetFormKey = GlobalKey<FormBuilderState>();
+  final resetPasswordFormKey = GlobalKey<FormBuilderState>();
   final loginFields = loginFormData;
+  final resetEmailField = resetFormData;
+  final resetPasswordFields = resetPasswordFormData;
+
   var rememberMe = false.obs;
   var otpCode = ''.obs;
   var seconds = 60.obs;
@@ -27,14 +31,18 @@ class AuthController extends GetxController {
     }
   }
 
+  void resetPassword() {
+    if (resetPasswordFormKey.currentState?.saveAndValidate() ?? false) {
+      Get.toNamed("/login");
+    }
+  }
+
   void setOtp(String code) {
     otpCode.value = code;
   }
 
   void verifyOtp() {
-    if (otpCode.value.isEmpty) {
-      Get.snackbar("Error", "Please enter OTP");
-    }
+    Get.toNamed("/resetPassword");
   }
 
   void startTimer() {

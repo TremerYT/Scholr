@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:scholr/core/theme/colors.dart';
 import 'package:scholr/core/theme/text_styles.dart';
 import 'package:scholr/core/widgets/custom_button.dart';
@@ -7,8 +7,8 @@ import 'package:scholr/core/widgets/custom_text.dart';
 import 'package:scholr/features/auth/controllers/auth_controller.dart';
 import 'package:scholr/features/auth/widgets/custom_form.dart';
 
-class ResetView extends GetView<AuthController> {
-  const ResetView({super.key});
+class ResetPasswordView extends GetView<AuthController> {
+  const ResetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class ResetView extends GetView<AuthController> {
           ),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(24),
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return SingleChildScrollView(
@@ -39,30 +39,23 @@ class ResetView extends GetView<AuthController> {
                           children: [
                             SizedBox(height: 60),
                             CustomText(
-                              text: "Reset Your password",
+                              text:
+                                  "Reset password to access your Scholr account",
                               style: AppTextStyles.headlineLarge.copyWith(
                                 color: AppColors.textPrimary,
                               ),
                             ),
                             SizedBox(height: 16),
-                            CustomText(
-                              text:
-                                  "Please enter your email and we will send an OTP code in the next step to reset your password",
-                              style: AppTextStyles.bodyMedium.copyWith(
-                                color: AppColors.textPrimary,
-                              ),
-                            ),
-                            SizedBox(height: 20),
                             CustomForm(
-                              formKey: controller.resetFormKey,
-                              fields: controller.resetEmailField,
+                              formKey: controller.resetPasswordFormKey,
+                              fields: controller.resetPasswordFields,
                             ),
-                            Spacer(),
+                            Spacer(), // ✅ now works
                             SizedBox(
                               width: double.infinity,
                               child: CustomButton(
-                                text: "Send OTP",
-                                onPressed: controller.reset,
+                                text: "Continue",
+                                onPressed: controller.resetPassword,
                               ),
                             ),
                           ],

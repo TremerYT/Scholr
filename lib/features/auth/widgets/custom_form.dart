@@ -38,6 +38,12 @@ class _CustomFormState extends State<CustomForm> {
               padding: const EdgeInsets.only(bottom: 16),
               child: FormBuilderTextField(
                 name: field.name,
+                onChanged: (value) {
+                  if (field.name == "password") {
+                    widget.formKey.currentState?.fields['confirmPassword']
+                        ?.validate();
+                  }
+                },
                 obscureText: field.isPassword ? isObscured : false,
                 style: const TextStyle(
                   color: AppColors.textPrimary,

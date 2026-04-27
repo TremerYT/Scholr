@@ -7,6 +7,7 @@ class AuthController extends GetxController {
   final loginFormKey = GlobalKey<FormBuilderState>();
   final resetFormKey = GlobalKey<FormBuilderState>();
   final resetPasswordFormKey = GlobalKey<FormBuilderState>();
+
   final loginFields = loginFormData;
   final resetEmailField = resetFormData;
   final resetPasswordFields = resetPasswordFormData;

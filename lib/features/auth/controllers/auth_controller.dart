@@ -18,7 +18,7 @@ class AuthController extends GetxController {
 
   void login() {
     if (loginFormKey.currentState?.saveAndValidate() ?? false) {
-      // TO BE IMPLEMENTED
+      Get.offAllNamed("/home");
     }
   }
 

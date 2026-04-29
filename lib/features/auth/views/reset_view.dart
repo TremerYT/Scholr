@@ -37,6 +37,13 @@ class ResetView extends GetView<AuthController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            IconButton(
+                              onPressed: () => Get.back(),
+                              icon: const Icon(
+                                Icons.arrow_back_ios_new,
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
                             SizedBox(height: 60),
                             CustomText(
                               text: "Reset Your password",

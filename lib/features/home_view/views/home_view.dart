@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scholr/core/theme/colors.dart';
@@ -11,6 +13,8 @@ class HomeView extends GetView {
 
   @override
   Widget build(BuildContext context) {
+    final RxBool isBalanceVisible = true.obs;
+
     return Scaffold(
       backgroundColor: AppColors.surface,
       appBar: AppBar(
@@ -64,28 +68,54 @@ class HomeView extends GetView {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(
-                        text: "School Fees Balance:",
-                        style: AppTextStyles.bodyLarge.copyWith(
-                          color: AppColors.textInverse,
-                        ),
-                      ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomText(
-                            text: "Ksh 4000.00",
-                            style: AppTextStyles.headlineLarge.copyWith(
+                            text: "School Fees Balance:",
+                            style: AppTextStyles.bodyMedium.copyWith(
                               color: AppColors.textInverse,
-                              fontSize: 29,
-                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Obx(
+                            () => GestureDetector(
+                              onTap: () => isBalanceVisible.value =
+                                  !isBalanceVisible.value,
+                              child: Icon(
+                                isBalanceVisible.value
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: AppColors.textInverse,
+                                size: 20,
+                              ),
                             ),
                           ),
                         ],
                       ),
-                      CustomText(
-                        text: "Total Paid : Ksh 373,174.76",
-                        style: AppTextStyles.bodyMedium.copyWith(
-                          color: AppColors.textInverse,
+                      SizedBox(height: 4),
+                      Obx(
+                        () => ImageFiltered(
+                          imageFilter: ImageFilter.blur(
+                            sigmaX: isBalanceVisible.value ? 0 : 6,
+                            sigmaY: isBalanceVisible.value ? 0 : 6,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(
+                                text: "Ksh 4000.00",
+                                style: AppTextStyles.headlineLarge.copyWith(
+                                  color: AppColors.textInverse,
+                                ),
+                              ),
+                              CustomText(
+                                text: "Total Paid : Ksh 373,174.76",
+                                style: AppTextStyles.bodyMedium.copyWith(
+                                  color: AppColors.textInverse,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(height: 10),

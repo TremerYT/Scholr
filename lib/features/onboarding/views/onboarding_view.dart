@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:scholr/core/theme/colors.dart';
 import 'package:scholr/core/theme/text_styles.dart';
 import 'package:scholr/core/widgets/custom_button.dart';
 import 'package:scholr/features/onboarding/controllers/onboarding_controller.dart';
@@ -14,8 +13,9 @@ class OnboardingView extends GetView<OnboardingController> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -26,7 +26,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 child: CustomText(
                   text: "Skip",
                   style: AppTextStyles.bodyLarge.copyWith(
-                    color: AppColors.primary,
+                    color: colorScheme.primary,
                   ),
                 ),
               ),
@@ -56,7 +56,7 @@ class OnboardingView extends GetView<OnboardingController> {
                         CustomText(
                           text: item.title,
                           style: AppTextStyles.headlineLarge.copyWith(
-                            color: AppColors.textPrimary,
+                            color: colorScheme.onSurface,
                           ),
                           align: TextAlign.center,
                         ),
@@ -64,7 +64,7 @@ class OnboardingView extends GetView<OnboardingController> {
                         CustomText(
                           text: item.description,
                           style: AppTextStyles.bodyMedium.copyWith(
-                            color: AppColors.textSecondary,
+                            color: colorScheme.onSurface.withValues(alpha: 0.7),
                           ),
                           align: TextAlign.center,
                         ),
@@ -90,8 +90,8 @@ class OnboardingView extends GetView<OnboardingController> {
                           height: 8,
                           decoration: BoxDecoration(
                             color: controller.currentPage.value == index
-                                ? AppColors.primary
-                                : AppColors.primaryLight,
+                                ? colorScheme.primary
+                                : colorScheme.primary.withValues(alpha: 0.4),
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),

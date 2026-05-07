@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:scholr/core/theme/colors.dart';
 import 'package:scholr/features/auth/model/form_field.dart';
 
 class CustomForm extends StatefulWidget {
@@ -28,6 +27,8 @@ class _CustomFormState extends State<CustomForm> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return FormBuilder(
       key: widget.formKey,
       child: Column(
@@ -45,14 +46,11 @@ class _CustomFormState extends State<CustomForm> {
                   }
                 },
                 obscureText: field.isPassword ? isObscured : false,
-                style: const TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: colorScheme.onSurface, fontSize: 16),
                 decoration: InputDecoration(
                   hintText: field.label,
-                  hintStyle: const TextStyle(
-                    color: AppColors.textSecondary,
+                  hintStyle: TextStyle(
+                    color: colorScheme.onSurface.withValues(alpha: 0.7),
                     fontSize: 16,
                   ),
                   suffixIcon: field.isPassword
@@ -69,35 +67,37 @@ class _CustomFormState extends State<CustomForm> {
                           },
                         )
                       : null,
-                  errorStyle: const TextStyle(color: Colors.red, fontSize: 13),
+                  errorStyle: TextStyle(color: colorScheme.error, fontSize: 13),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: AppColors.divider),
+                    borderSide: BorderSide(
+                      color: colorScheme.outline.withValues(alpha: 0.6),
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(
-                      color: AppColors.divider,
+                    borderSide: BorderSide(
+                      color: colorScheme.outline.withValues(alpha: 0.6),
                       width: 1.5,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(
-                      color: AppColors.primary,
+                    borderSide: BorderSide(
+                      color: colorScheme.primary,
                       width: 2,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.red, width: 1.5),
+                    borderSide: BorderSide(color: colorScheme.error, width: 1.5),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.red, width: 2),
+                    borderSide: BorderSide(color: colorScheme.error, width: 2),
                   ),
                   filled: true,
-                  fillColor: AppColors.surface,
+                  fillColor: colorScheme.surface,
                 ),
                 validator: field.validators != null
                     ? (value) {

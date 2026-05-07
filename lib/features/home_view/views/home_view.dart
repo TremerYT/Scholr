@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scholr/core/theme/colors.dart';
 import 'package:scholr/core/theme/text_styles.dart';
 import 'package:scholr/core/utils/utils.dart';
 import 'package:scholr/core/widgets/custom_button.dart';
@@ -14,24 +13,25 @@ class HomeView extends GetView {
   @override
   Widget build(BuildContext context) {
     final RxBool isBalanceVisible = true.obs;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: AppColors.surface,
+      backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: AppColors.primary,
+        backgroundColor: colorScheme.primary,
         title: Row(
           children: [
             CircleAvatar(
               radius: 18,
-              backgroundColor: Colors.white,
-              child: Icon(Icons.person, color: Colors.black),
+              backgroundColor: colorScheme.onPrimary,
+              child: Icon(Icons.person, color: colorScheme.primary),
             ),
             SizedBox(width: 10),
             Expanded(
               child: CustomText(
                 text: '${getGreeting()},\nJeffery \u{1F44B}',
                 style: AppTextStyles.bodyLarge.copyWith(
-                  color: AppColors.textInverse,
+                  color: colorScheme.onPrimary,
                   fontSize: 16,
                   height: 1.2,
                 ),
@@ -43,12 +43,12 @@ class HomeView extends GetView {
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.notifications),
-            color: AppColors.textInverse,
+            color: colorScheme.onPrimary,
           ),
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.search),
-            color: AppColors.textInverse,
+            color: colorScheme.onPrimary,
           ),
         ],
       ),
@@ -62,7 +62,7 @@ class HomeView extends GetView {
                   width: double.infinity,
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: AppColors.primary,
+                    color: colorScheme.primary,
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Column(
@@ -74,7 +74,7 @@ class HomeView extends GetView {
                           CustomText(
                             text: "School Fees Balance:",
                             style: AppTextStyles.bodyMedium.copyWith(
-                              color: AppColors.textInverse,
+                              color: colorScheme.onPrimary,
                             ),
                           ),
                           Obx(
@@ -85,7 +85,7 @@ class HomeView extends GetView {
                                 isBalanceVisible.value
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: AppColors.textInverse,
+                                color: colorScheme.onPrimary,
                                 size: 20,
                               ),
                             ),
@@ -105,13 +105,13 @@ class HomeView extends GetView {
                               CustomText(
                                 text: "Ksh 4000.00",
                                 style: AppTextStyles.headlineLarge.copyWith(
-                                  color: AppColors.textInverse,
+                                  color: colorScheme.onPrimary,
                                 ),
                               ),
                               CustomText(
                                 text: "Total Paid : Ksh 373,174.76",
                                 style: AppTextStyles.bodyMedium.copyWith(
-                                  color: AppColors.textInverse,
+                                  color: colorScheme.onPrimary,
                                 ),
                               ),
                             ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
-import 'package:scholr/core/theme/colors.dart';
 import 'package:scholr/core/theme/text_styles.dart';
 
 class CustomOTP extends StatelessWidget {
@@ -11,16 +10,17 @@ class CustomOTP extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final defaultPinTheme = PinTheme(
       width: 50,
       height: 56,
       textStyle: AppTextStyles.titleMedium.copyWith(
-        color: AppColors.textPrimary,
+        color: colorScheme.onSurface,
       ),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.divider),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.6)),
       ),
     );
 
@@ -31,25 +31,25 @@ class CustomOTP extends StatelessWidget {
 
       focusedPinTheme: defaultPinTheme.copyWith(
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.primary, width: 2),
+          border: Border.all(color: colorScheme.primary, width: 2),
         ),
       ),
 
       submittedPinTheme: defaultPinTheme.copyWith(
         decoration: BoxDecoration(
-          color: AppColors.secondaryLight,
+          color: colorScheme.secondary.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.primary),
+          border: Border.all(color: colorScheme.primary),
         ),
       ),
 
       errorPinTheme: defaultPinTheme.copyWith(
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.red),
+          border: Border.all(color: colorScheme.error),
         ),
       ),
     );
